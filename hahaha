@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab-Exam</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+</head>
+<body>
+  
+<ion-app>
+    <ion-header>
+        <ion-toolbar color="dark">
+            <ion-title>DISCOUNT CODE</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-item>
+            <ion-input id="A" label="Name" label-placement="floating" type="text"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+            <ion-input id="B" label="Product Name" label-placement="floating" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input id="C" label="Product Price" label-placement="floating" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Discounted?</ion-label>
+            <ion-select id="D" placeholder="Select option" onchange="myFunction()">
+                <ion-select-option value="Yes">Yes</ion-select-option>
+                <ion-select-option value="No">No</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item id="E" style="display: none;">
+        <ion-input id="F" label="Discount" label-placement="floating" type="text"></ion-input>
+        </ion-item>
+
+        <br>
+        <ion-button expand="block" onclick="trig()" color="dark">APPLY DISCOUNT</ion-button>
+        
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>ORDER SUMMARY</ion-card-title>
+            </ion-card-header>
+            <ion-card-content id="res"></ion-card-content>
+        </ion-card>
+    </ion-content>
+</ion-app>
+
+<script>
+        document.getElementById('D').addEventListener('ionChange', myFunction);
+        function myFunction(){
+        const D = document.getElementById('D').value;
+        const E = document.getElementById('E');
+
+        if (D === 'Yes') {
+            E.style.display = 'block';
+            } else {
+            E.style.display = 'none';
+            document.getElementById('F').value = '';
+            }
+        }
+        
+        function trig() {
+            const A = document.getElementById('A').value;
+            const B = document.getElementById('B').value;
+            const C = parseFloat(document.getElementById('C').value);
+            const D = document.getElementById('D').value;
+            const F = document.getElementById('F').value;
+
+            let dcPrice = C;
+            let G = F;
+            if (D === 'Yes') {
+                if (F === '123456') {
+                    dcPrice = C * 0.99;
+                    G = `<p><strong>Discount Code: </strong> ${F} (Valid)</p>`;
+                } else {
+                    dcPrice = C
+                    G = `<p><strong>Discount Code: </strong> ${F} (Invalid)</p>`;
+                }
+            } else{
+                G = `<p><strong>Discount Code: </strong>No Discount </p>`;
+            }
+
+            document.getElementById('res').innerHTML = `<strong>Name:</strong>${A} 
+            <br> 
+            <strong>Product Name:</strong> ${B} 
+            <br> 
+            <strong>Price:</strong>: ${C.toFixed(2)} 
+            <br> 
+            <strong> ${G} <strong>Total Price:</strong> 
+            ${discountedPrice.toFixed(2)}`;
+    }
+</script>
+</body>
+</html>
