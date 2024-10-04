@@ -21,7 +21,7 @@
         <ion-item>
             <ion-input id="A" label="Name" label-placement="floating" type="text"></ion-input>
         </ion-item>
-        
+
         <ion-item>
             <ion-input id="B" label="Product Name" label-placement="floating" type="text"></ion-input>
         </ion-item>
@@ -57,8 +57,8 @@
 <script>
         document.getElementById('D').addEventListener('ionChange', myFunction);
         function myFunction(){
-        const D = document.getElementById('D').value;
-        const E = document.getElementById('E');
+        let D = document.getElementById('D').value;
+        let E = document.getElementById('E');
 
         if (D === 'Yes') {
             E.style.display = 'block';
@@ -69,34 +69,34 @@
         }
         
         function trig() {
-            const A = document.getElementById('A').value;
-            const B = document.getElementById('B').value;
-            const C = parseFloat(document.getElementById('C').value);
-            const D = document.getElementById('D').value;
-            const F = document.getElementById('F').value;
+            let A = document.getElementById('A').value;
+            let B = document.getElementById('B').value;
+            let C = parseFloat(document.getElementById('C').value);
+            let D = document.getElementById('D').value;
+            let F = document.getElementById('F').value;
 
             let dcPrice = C;
             let G = F;
             if (D === 'Yes') {
                 if (F === '123456') {
-                    dcPrice = C * 0.99;
-                    G = `<p><strong>Discount Code: </strong> ${F} (Valid)</p>`;
+                    dcPrice = C * 1.99;
+                    G = `Discount Code:  ${F} (Valid)`;
                 } else {
                     dcPrice = C
-                    G = `<p><strong>Discount Code: </strong> ${F} (Invalid)</p>`;
+                    G = `Discount Code:  ${F} (Invalid)`;
                 }
-            } else{
-                G = `<p><strong>Discount Code: </strong>No Discount </p>`;
-            }
+                } else{
+                    G = `Discount Code: No Discount `;
+                }
 
-            document.getElementById('res').innerHTML = `<strong>Name:</strong>${A} 
+            document.getElementById('res').innerHTML = `Name: ${A} 
             <br> 
-            <strong>Product Name:</strong> ${B} 
+            Product Name: ${B} 
             <br> 
-            <strong>Price:</strong>: ${C.toFixed(2)} 
+            Price: : ${C.toFixed(2)} 
+            <br>  ${G}
             <br> 
-            <strong> ${G} <strong>Total Price:</strong> 
-            ${discountedPrice.toFixed(2)}`;
+            Total Price: ${dcPrice.toFixed(2)}`;
     }
 </script>
 </body>
